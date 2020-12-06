@@ -3,6 +3,9 @@ import tooltip from './components/tooltip/index.js';
 
 tooltip.initialize();
 
+const togglerElement=document.getElementsByClassName("sidebar__toggler")[0];
+togglerElement.addEventListener('click', event => document.body.classList.toggle('is-collapsed-sidebar'));
+
 const router = Router.instance();
 
 router
