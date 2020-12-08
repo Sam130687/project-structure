@@ -12,34 +12,34 @@ export default class DoubleSlider {
 
       if (newLeft < 0) {
         newLeft = 0;
-      }
+      };
       newLeft *= 100;
       let right = parseFloat(this.subElements.thumbRight.style.right);
 
       if (newLeft + right > 100) {
         newLeft = 100 - right;
-      }
+      };
 
       this.dragging.style.left = this.subElements.progress.style.left = newLeft + '%';
       this.subElements.from.innerHTML = this.formatValue(this.getValue().from);
-    }
+    };
 
     if (this.dragging === this.subElements.thumbRight) {
       let newRight = (innerRight - event.clientX - this.shiftX) / width;
 
       if (newRight < 0) {
         newRight = 0;
-      }
+      };
       newRight *= 100;
 
       let left = parseFloat(this.subElements.thumbLeft.style.left);
 
       if (left + newRight > 100) {
         newRight = 100 - left;
-      }
+      };
       this.dragging.style.right = this.subElements.progress.style.right = newRight + '%';
       this.subElements.to.innerHTML = this.formatValue(this.getValue().to);
-    }
+    };
   };
 
   onThumbPointerUp = () => {
@@ -83,7 +83,7 @@ export default class DoubleSlider {
       </div>
       <span data-element="to">${this.formatValue(to)}</span>
     </div>`;
-  }
+  };
 
   render() {
     const element = document.createElement('div');
@@ -98,14 +98,14 @@ export default class DoubleSlider {
     this.initEventListeners();
 
     this.update();
-  }
+  };
 
   initEventListeners() {
     const { thumbLeft, thumbRight } = this.subElements;
 
     thumbLeft.addEventListener('pointerdown', event => this.onThumbPointerDown(event));
     thumbRight.addEventListener('pointerdown', event => this.onThumbPointerDown(event));
-  }
+  };
 
   getSubElements(element) {
     const elements = element.querySelectorAll('[data-element]');
@@ -115,17 +115,17 @@ export default class DoubleSlider {
 
       return accum;
     }, {});
-  }
+  };
 
   remove() {
     this.element.remove();
-  }
+  };
 
   destroy() {
     this.remove();
     document.removeEventListener('pointermove', this.onThumbPointerMove);
     document.removeEventListener('pointerup', this.onThumbPointerUp);
-  }
+  };
 
   update() {
     const rangeTotal = this.max - this.min;
@@ -137,7 +137,7 @@ export default class DoubleSlider {
 
     this.subElements.thumbLeft.style.left = left;
     this.subElements.thumbRight.style.right = right;
-  }
+  };
 
   onThumbPointerDown(event) {
     const thumbElem = event.target;
@@ -158,7 +158,7 @@ export default class DoubleSlider {
 
     document.addEventListener('pointermove', this.onThumbPointerMove);
     document.addEventListener('pointerup', this.onThumbPointerUp);
-  }
+  };
 
   getValue() {
     const rangeTotal = this.max - this.min;
@@ -169,5 +169,5 @@ export default class DoubleSlider {
     const to = Math.round(this.max - parseFloat(right) * 0.01 * rangeTotal);
 
     return { from, to };
-  }
+  };
 }

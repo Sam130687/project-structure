@@ -5,11 +5,12 @@
     "jest": true
   },
   "extends": "eslint:recommended",
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2020,
     "sourceType": "module"
   },
-  "rules": {
+  "rules": {    
     "no-debugger": "error",
     "no-dupe-keys": "warn",
     "no-dupe-args": "warn",
